@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:color="@color/pink"
+        tools:targetApi="lollipop">
+        <item android:drawable="@drawable/ic_magnify_plus_outline" />
+        <item android:id="@android:id/mask">
+            <shape android:shape="oval">
+                <solid android:color="@color/pink" />
+            </shape>
+        </item>
+</ripple>
+
