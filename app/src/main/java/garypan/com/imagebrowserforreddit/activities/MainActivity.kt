@@ -19,14 +19,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val fragmentManager = supportFragmentManager
         val homeAdapter = ViewPagerAdapter(fragmentManager)
-
-        homeAdapter.addFragment(SubredditFragment.newInstance(getString(R.string.pics_subreddit)))
-        supportActionBar?.title = getString(R.string.pics_subreddit)
-        homeAdapter.addFragment(SubredditFragment.newInstance(getString(R.string.aww_subreddit)))
-        homeAdapter.addFragment(SubredditFragment.newInstance(getString(R.string.funny_subreddit)))
-        homeAdapter.addFragment(SubredditFragment.newInstance(getString(R.string.mildlyinteresting_subreddit)))
-        homeAdapter.addFragment(SubredditFragment.newInstance(getString(R.string.dog_pictures_subreddit)))
-        homeAdapter.addFragment(SubredditFragment.newInstance(getString(R.string.puppy_smiles_subreddit)))
+        addPictureSubreddits(homeAdapter)
 
         viewPager.apply {
             adapter = homeAdapter
@@ -64,5 +57,15 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun addPictureSubreddits(adapter : ViewPagerAdapter){
+        adapter.addFragment(SubredditFragment.newInstance(getString(R.string.pics_subreddit)))
+        supportActionBar?.title = getString(R.string.pics_subreddit)
+        adapter.addFragment(SubredditFragment.newInstance(getString(R.string.aww_subreddit)))
+        adapter.addFragment(SubredditFragment.newInstance(getString(R.string.funny_subreddit)))
+        adapter.addFragment(SubredditFragment.newInstance(getString(R.string.mildlyinteresting_subreddit)))
+        adapter.addFragment(SubredditFragment.newInstance(getString(R.string.dog_pictures_subreddit)))
+        adapter.addFragment(SubredditFragment.newInstance(getString(R.string.puppy_smiles_subreddit)))
     }
 }

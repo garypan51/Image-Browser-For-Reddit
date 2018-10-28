@@ -2,24 +2,25 @@
     <string name="app_name">Image Browser For reddit</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Subreddits -->
     <string name="pics_subreddit">/r/pics</string>
     <string name="aww_subreddit">/r/aww</string>
     <string name="funny_subreddit">/r/funny</string>
     <string name="mildlyinteresting_subreddit">/r/mildlyinteresting</string>
     <string name="dog_pictures_subreddit">/r/dogpictures</string>
     <string name="puppy_smiles_subreddit">/r/puppysmiles</string>
+
+    <!-- Descriptions -->
     <string name="post_imageview_description">ImageView to display image of a reddit post</string>
 
     <!--Keys-->
     <string name="subredditKey">subreddit</string>
 
-
     <!-- URLS -->
     <string name="base_url">https://www.reddit.com</string>
-    <string name="json_format_request">.json</string>
+    <string name="json_format">.json</string>
     <string name="comments">/comments/</string>
-    <string name="limit">\?limit=100</string>
-    <string name="sorting">&amp;sort=top</string>
-    <string name="after">&amp;after=</string>
+    <string name="limit">100</string>
+    <string name="sorting">top</string>
 
 </resources>

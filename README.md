@@ -8,6 +8,9 @@ The following app displays images from imaged based subreddits. It is meant to d
 * AndroidX
 * Android Studio 3.0+
 
+### Screenshots
+
+
 ## License
 
 This project is licensed under the MIT License, so feel free to use it as you wish. See LICENSE file for more details.
