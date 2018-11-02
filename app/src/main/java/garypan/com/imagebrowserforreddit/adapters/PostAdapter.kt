@@ -2,7 +2,6 @@ package garypan.com.imagebrowserforreddit.adapters
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
-//import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +13,13 @@ import garypan.com.imagebrowserforreddit.R
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import garypan.com.imagebrowserforreddit.paging.Status
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
 
 class PostAdapter(val context : Context) :
     PagedListAdapter<RedditPostResponse.Children, PostViewHolder>(diffCallback){
-    private val TAG = "PostsRecyclerView"
     private lateinit var circularProgressDrawable : CircularProgressDrawable
+    private var status = Status.RUNNING
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<RedditPostResponse.Children>() {
@@ -90,6 +90,11 @@ class PostAdapter(val context : Context) :
             -> originalUrl.substring(0, originalUrl.indexOf("//") + 2) + "giant." + originalUrl.substring(originalUrl.indexOf("//") + 2) + ".gif"
             else -> originalUrl
         }
+    }
+
+    fun setStatus(status: Status) {
+        this.status = status
+        notifyItemChanged(super.getItemCount())
     }
 }
 

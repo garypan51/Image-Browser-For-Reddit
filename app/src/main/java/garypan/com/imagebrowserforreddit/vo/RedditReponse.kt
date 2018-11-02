@@ -50,7 +50,7 @@ object RedditPostResponse {
 }
 
 object RedditCommentResponse {
-    data class Result( val data : Data )
+    data class Result(val data : Data)
 
     data class Data( val children : ArrayList<Children>,
                      val after : String,
@@ -62,5 +62,6 @@ object RedditCommentResponse {
                         val score : Int,
                         val gilded : Int,
                         val author : String,
-                        val name : String)
+                        val name : String,
+                        val id : String)
 }

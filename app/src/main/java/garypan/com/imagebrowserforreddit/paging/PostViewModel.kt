@@ -1,6 +1,7 @@
 package garypan.com.imagebrowserforreddit.paging
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -31,4 +32,17 @@ class PostViewModel(subreddit : String) : ViewModel() {
         super.onCleared()
         disposables.dispose()
     }
+
+    fun getStatus(): LiveData<Status> = Transformations.switchMap<PostDataSource,
+            Status>(postDataSourceFactory.postDataSourceLiveData, PostDataSource::status)
+
+    fun retry() {
+        postDataSourceFactory.postDataSourceLiveData.value?.retry()
+    }
+
+    fun listIsEmpty(): Boolean {
+        return postList.value?.isEmpty() ?: true
+    }
+
+
 }

@@ -3,8 +3,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- Subreddits -->
-    <string name="pics_subreddit">/r/pics</string>
-    <string name="aww_subreddit">/r/aww</string>
+    <string name="pics_subreddit">pics</string>
+    <string name="aww_subreddit">aww</string>
     <string name="funny_subreddit">/r/funny</string>
     <string name="mildlyinteresting_subreddit">/r/mildlyinteresting</string>
     <string name="dog_pictures_subreddit">/r/dogpictures</string>
@@ -12,6 +12,8 @@
 
     <!-- Descriptions -->
     <string name="post_imageview_description">ImageView to display image of a reddit post</string>
+    <string name="connection_error_description">Connection Failed. Tap to retry.</string>
+    <string name="reload">Reload</string>
 
     <!--Keys-->
     <string name="subredditKey">subreddit</string>
@@ -22,5 +24,8 @@
     <string name="comments">/comments/</string>
     <string name="limit">100</string>
     <string name="sorting">top</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

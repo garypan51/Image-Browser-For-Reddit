@@ -20,4 +20,8 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) :
     fun addFragment(fragment: Fragment) {
         fragments.add(fragment)
     }
+
+    fun addFragments(listOfFragment: List<Fragment>) {
+        fragments.addAll(listOfFragment)
+    }
 }

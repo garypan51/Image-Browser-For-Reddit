@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#00574b</color>
     <color name="colorAccent">#D81B60</color>
     <color name="transparentGray">#a056595f</color>
     <color name="transparentWhite">#A2FFFFFF</color>
@@ -13,7 +13,7 @@
     <color name="coolGray">#8896AB</color>
     <color name="charcoalGray">#364652</color>
     <color name="spaceGray">#424C55</color>
-    <color name="darkLiver">#4C4C47</color>
+    <color name="darkLiver">#4c4c47</color>
     <color name="steelTeal">#52647A</color>
     <color name="tuscany">#B09E99</color>
     <color name="darkBlue">#0E1721</color>
