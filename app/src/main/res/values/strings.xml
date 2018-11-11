@@ -1,14 +1,23 @@
 <resources>
     <string name="app_name">Image Browser For reddit</string>
+
+    <!-- Settings/Toobar -->
     <string name="action_settings">Settings</string>
+    <string name="action_close">Close</string>
+    <string name="action_sort">Sort By</string>
+    <string name="action_sort_top">Top</string>
+    <string name="action_sort_hot">Hot</string>
+    <string name="action_sort_new">New</string>
+    <string name="action_search">Search</string>
+    <string name="action_change_layout">Change Layout</string>
 
     <!-- Subreddits -->
     <string name="pics_subreddit">pics</string>
     <string name="aww_subreddit">aww</string>
-    <string name="funny_subreddit">/r/funny</string>
-    <string name="mildlyinteresting_subreddit">/r/mildlyinteresting</string>
-    <string name="dog_pictures_subreddit">/r/dogpictures</string>
-    <string name="puppy_smiles_subreddit">/r/puppysmiles</string>
+    <string name="funny_subreddit">funny</string>
+    <string name="mildlyinteresting_subreddit">mildlyinteresting</string>
+    <string name="dog_pictures_subreddit">dogpictures</string>
+    <string name="puppy_smiles_subreddit">puppysmiles</string>
 
     <!-- Descriptions -->
     <string name="post_imageview_description">ImageView to display image of a reddit post</string>
@@ -17,6 +26,10 @@
 
     <!--Keys-->
     <string name="subredditKey">subreddit</string>
+    <string name="postIdKey">postid</string>
+    <string name="layoutPrefKey">layout</string>
+    <string name="layoutPrefLinearValue">Linear</string>
+    <string name="layoutPrefStagValue">Staggered</string>
 
     <!-- URLS -->
     <string name="base_url">https://www.reddit.com</string>
@@ -24,8 +37,5 @@
     <string name="comments">/comments/</string>
     <string name="limit">100</string>
     <string name="sorting">top</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

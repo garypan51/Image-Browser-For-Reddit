@@ -3,7 +3,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:color="?attr/rippleEffectColor"
         tools:targetApi="lollipop">
-        <item android:drawable="@drawable/ic_comment" />
+        <item android:drawable="@drawable/ic_close" />
         <item android:id="@android:id/mask">
             <shape android:shape="oval">
                 <solid android:color="?attr/rippleEffectColor" />

@@ -2,7 +2,7 @@ package garypan.com.imagebrowserforreddit.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
-import garypan.com.imagebrowserforreddit.interfaces.RedditApi
+import garypan.com.imagebrowserforreddit.utils.RedditApi
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
 import io.reactivex.disposables.CompositeDisposable
 

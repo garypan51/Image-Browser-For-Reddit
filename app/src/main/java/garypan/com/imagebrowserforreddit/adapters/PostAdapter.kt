@@ -1,10 +1,16 @@
 package garypan.com.imagebrowserforreddit.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.content.pm.ResolveInfo
+import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
@@ -13,12 +19,14 @@ import garypan.com.imagebrowserforreddit.R
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.google.android.material.card.MaterialCardView
 import garypan.com.imagebrowserforreddit.paging.Status
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
 
-class PostAdapter(val context : Context) :
-    PagedListAdapter<RedditPostResponse.Children, PostViewHolder>(diffCallback){
+class PostAdapter(val context : Context, private val postButtonsClickListener : OnPostButtonsClickListener) :
+    PagedListAdapter<RedditPostResponse.Children, PostAdapter.PostViewHolder>(diffCallback){
     private lateinit var circularProgressDrawable : CircularProgressDrawable
+    private var currentLayout = "Linear"
     private var status = Status.RUNNING
 
     companion object {
@@ -29,6 +37,20 @@ class PostAdapter(val context : Context) :
             override fun areContentsTheSame(oldItem: RedditPostResponse.Children, newItem: RedditPostResponse.Children): Boolean =
                 oldItem == newItem
         }
+    }
+
+    class PostViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+        val postCardView : MaterialCardView = view.cardView
+        val postImage : ImageView = view.postImageView
+        val title : TextView = view.titleTextView
+        val viewPictureButton : Button = view.viewPictureButton
+        val commentsButton : Button = view.commentsButton
+        val browserButton : Button = view.openInBrowserButton
+    }
+
+    interface OnPostButtonsClickListener{
+        fun openCommentsView(postId : String)
+        fun openImageView(postUrl : String, post : RedditPostResponse.Post)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -42,35 +64,44 @@ class PostAdapter(val context : Context) :
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         if (!(getItem(position)!!.data.containsImages())){
-            holder.entireCard.visibility = View.INVISIBLE
-            holder.entireCard.layoutParams.height = 0
+            holder.postCardView.visibility = View.GONE
             return
         }
 
+        val post = getItem(position)?.data
         holder.postImage.layout(0,0,0,0)
-        holder.title.text = getItem(position)!!.data.title.trim()
-
-        val imageAspectRatio = ((getItem(position)!!.data.preview.images[0].source.width).toDouble()) / getItem(position)!!.data.preview.images[0].source.height
-        val screenWidth = context.resources.displayMetrics.widthPixels
-        val screenHeight = context.resources.displayMetrics.heightPixels
-        val height = if ((screenWidth / imageAspectRatio).toInt() > screenHeight) {
-                screenHeight - 400
-            }
-            else {(screenWidth / imageAspectRatio).toInt()}
-        holder.postImage.layoutParams.height = height
-
+        holder.title.text = post!!.title.trim()
+        setImageViewDimensions(post, holder)
         val postUrl = adjustUrl(getItem(position)!!.data.url)
+        setPostButtonListeners(post, holder, position, postUrl)
 
-        val options =
-            RequestOptions()
-                .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(circularProgressDrawable)
+        val options = RequestOptions()
+                        .fitCenter()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .placeholder(circularProgressDrawable)
 
         Glide.with(context)
             .load(postUrl)
             .apply(options)
             .into(holder.postImage)
+    }
+
+    private fun setImageViewDimensions(post : RedditPostResponse.Post, holder: PostViewHolder){
+        val imageAspectRatio = ((post.preview.images[0].source.width).toDouble()) / post.preview.images[0].source.height
+        val screenWidth = context.resources.displayMetrics.widthPixels
+        val screenHeight = context.resources.displayMetrics.heightPixels
+
+        val imageViewWidth = if(currentLayout == context.resources.getString(R.string.layoutPrefLinearValue)) { screenWidth }
+        else{ screenWidth / 2}
+
+
+        holder.postImage.layoutParams.width = imageViewWidth
+
+        holder.postImage.layoutParams.height = if ((imageViewWidth.toDouble() / imageAspectRatio).toInt() > screenHeight) {
+            screenHeight - 400
+        } else {
+            (imageViewWidth.toDouble() / imageAspectRatio).toInt()
+        }
     }
 
     private fun adjustUrl(originalUrl : String) : String{
@@ -92,15 +123,29 @@ class PostAdapter(val context : Context) :
         }
     }
 
+    private fun setPostButtonListeners(post : RedditPostResponse.Post, holder: PostViewHolder, position: Int, postUrl : String){
+        holder.viewPictureButton.setOnClickListener{postButtonsClickListener.openImageView(postUrl, post)}
+        holder.commentsButton.setOnClickListener{postButtonsClickListener.openCommentsView(getItem(position)!!.data.id)}
+
+        holder.browserButton.setOnClickListener{
+            val webIntent: Intent = Uri.parse(context.resources.getString(R.string.base_url) + post?.permalink ).let { webpage ->
+                Intent(Intent.ACTION_VIEW, webpage)
+            }
+            val activities: List<ResolveInfo> = context.packageManager.queryIntentActivities(webIntent, 0)
+            val isIntentSafe: Boolean = activities.isNotEmpty()
+
+            if (isIntentSafe) {
+                context.startActivity(webIntent)
+            }
+        }
+    }
+
     fun setStatus(status: Status) {
         this.status = status
         notifyItemChanged(super.getItemCount())
     }
-}
 
-class PostViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    val entireCard = view.cardView
-    val postImage = view.postImageView
-    val title = view.titleTextView
-    val commentButton = view.commentsButton
+    fun setLayout(layout : String){
+        currentLayout = layout
+    }
 }

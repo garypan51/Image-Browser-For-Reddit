@@ -18,16 +18,38 @@
 
     <!-- Base activity theme -->
     <style name="LightTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimaryDark">@color/coolGray</item>
-        <item name="android:textColorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/darkBlack</item>
         <item name="android:textColorSecondary">@color/black</item>
-        <item name="primaryTextColor">@color/black</item>
         <item name="backgroundColor">@color/smokeWhite</item>
+        <item name="postCardBackgroundColor">@color/white</item>
+        <item name="postsButtonsColor">@color/darkBlack</item>
+
+        <item name="rippleEffectColor">@color/brightBlue</item>
+        <item name="borderColor">@color/darkBlack</item>
+        <item name="selectedViewPagerColor">@color/brightBlue</item>
+        <item name="unselectedViewPagerColor">@color/brightRed</item>
+
+        <item name="commentsButtonsColor">@color/darkBlack</item>
+        <item name="commentsBackgroundTransparentColor">@color/transparentGray</item>
+        <item name="commentsBackgroundSolidColor">@color/smokeWhite</item>
+        <item name="commentsCardBackgroundTransparentColor">@color/transparentGray</item>
+        <item name="commentsCardBackgroundSolidColor">@color/smokeWhite</item>
+        <item name="commentsTransparentTextColor">@color/smokeWhite</item>
+        <item name="commentsSolidTextColor">@color/smokeWhite</item>
+        <item name="imageBackgroundColor">@color/darkBlack</item>
+        <item name="appBarButtonColor">@color/smokeWhite</item>
+
     </style>
 
 
     <style name="ToolbarTextAppearance" parent="@android:style/TextAppearance.Medium">>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/fragment_open_up</item>
+        <item name="android:windowExitAnimation">@anim/fragment_dismiss_down</item>
     </style>
 
 </resources>

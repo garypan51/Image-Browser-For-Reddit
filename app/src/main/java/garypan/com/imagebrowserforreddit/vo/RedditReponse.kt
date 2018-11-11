@@ -13,13 +13,14 @@ object RedditPostResponse {
     data class Post( val title : String,
                      val author : String,
                      val url : String,
+                     val permalink : String,
                      val id : String,
                      val thumbnail_height : Int,
                      val isVideo : Boolean,
                      val distinguished : String,
                      val subreddit : String,
                      val name : String,
-                     val preview : Preview ) {
+                     val preview : Preview) {
         fun containsImages() : Boolean{
             var containsImage : Boolean
             when(preview){

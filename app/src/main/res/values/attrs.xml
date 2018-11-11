@@ -4,9 +4,21 @@
         <attr name="primaryTextColor" format="color"/>
         <attr name="secondaryTextColor" format="color"/>
         <attr name="backgroundColor" format="color"/>
-        <attr name="cardDividerColor" format="color"/>
-        <attr name="tabSelectedColor" format="color"/>
-        <attr name="tabUnselectedColor" format="color"/>
-        <attr name="floatingButtonColor" format="color"/>
+        <attr name="postCardBackgroundColor" format="color"/>
+        <attr name="postsButtonsColor" format="color"/>
+        <attr name="commentsButtonsColor" format="color"/>
+        <attr name="rippleEffectColor" format="color"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="selectedViewPagerColor" format="color"/>
+        <attr name="unselectedViewPagerColor" format="color"/>
+        <attr name="commentsBackgroundTransparentColor" format="color"/>
+        <attr name="commentsBackgroundSolidColor" format="color"/>
+        <attr name="commentsCardBackgroundTransparentColor" format="color"/>
+        <attr name="commentsCardBackgroundSolidColor" format="color"/>
+        <attr name="commentsTransparentTextColor" format="color"/>
+        <attr name="commentsSolidTextColor" format="color"/>
+        <attr name="imageBackgroundColor" format="color"/>
+        <attr name="appBarButtonColor" format="color"/>
+
     </declare-styleable>
 </resources>

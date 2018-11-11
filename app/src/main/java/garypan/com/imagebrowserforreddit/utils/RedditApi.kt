@@ -1,4 +1,4 @@
-package garypan.com.imagebrowserforreddit.interfaces
+package garypan.com.imagebrowserforreddit.utils
 
 import garypan.com.imagebrowserforreddit.vo.RedditCommentResponse
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface RedditApi {
     @GET("/r/{subreddit}/{sort}.json")
@@ -26,20 +25,11 @@ interface RedditApi {
                      @Query("after") after: String) :
             Observable<RedditPostResponse.Result>
 
-    @GET("/r/{subreddit}/comments/{postId}.json")
-    fun getInitialComments(@Path("subreddit") subreddit : String,
+    @GET("/r/{subreddit}/comments/{postId}.json?limit=1000")
+    fun getComments(@Path("subreddit") subreddit : String,
                            @Path("postId") postId : String,
-                           @Query("sort") sort: String,
-                           @Query("limit") limit: Int) :
-            Observable<List<RedditCommentResponse.Result>>
-
-    @GET("/r/{subreddit}/comments/{postId}.json")
-    fun getNextComments(@Path("subreddit") subreddit : String,
-                        @Path("postId") postId : String,
-                        @Query("sort") sort: String,
-                        @Query("limit") limit: Int,
-                        @Query("after") after: String) :
-            Observable<List<RedditCommentResponse.Result>>
+                           @Query("sort") sort: String) :
+            Call<List<RedditCommentResponse.Result>>
 
     companion object {
         fun create(): RedditApi {

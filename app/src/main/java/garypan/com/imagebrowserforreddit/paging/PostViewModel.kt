@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import garypan.com.imagebrowserforreddit.interfaces.RedditApi
+import garypan.com.imagebrowserforreddit.utils.RedditApi
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
 import io.reactivex.disposables.CompositeDisposable
 
