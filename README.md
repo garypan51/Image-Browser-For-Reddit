@@ -8,9 +8,6 @@ The following app displays images from imaged based subreddits. It is meant to d
 * AndroidX
 * Android Studio 3.0+
 
-### Screenshots
-
-
 ## License
 
 This project is licensed under the MIT License, so feel free to use it as you wish. See LICENSE file for more details.
@@ -21,8 +18,9 @@ The Following software/libraries were utlized. See NOTICE file for more details.
 
 * Kotlin
 * Android Open Source Project
-* Volley
+* RetroFit
 * Glide
-* Moshi
-* Eventbus
-* Flexbox
+* Gson
+* RxJava
+* PhotoView
+* Circle Indicator
