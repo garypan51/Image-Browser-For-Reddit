@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <PreferenceCategory
+        android:title="Appearance">
+        <SwitchPreference
+            android:key="lightMode"
+            android:title="Light Mode"
+            android:summary="Enable or Disable Light Theme For The App"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Miscellaneous">
+        <Preference
+            android:key="libraryPref"
+            android:title="Library Acknowledgments"
+            android:summary="Library License Acknowledgments for Libraries Used in App" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

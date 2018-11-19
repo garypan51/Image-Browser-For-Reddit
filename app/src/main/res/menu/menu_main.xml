@@ -3,23 +3,75 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="garypan.com.imagebrowserforreddit.activities.MainActivity">
 
-    <!--<item-->
-        <!--android:id="@+id/action_sort"-->
-        <!--android:icon="@drawable/ic_sort"-->
-        <!--android:title="@string/action_sort"-->
-        <!--app:showAsAction="ifRoom">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/sort_top"-->
-                <!--android:title="@string/action_sort_top" />-->
-            <!--<item-->
-                <!--android:id="@+id/sort_hot"-->
-                <!--android:title="@string/action_sort_hot" />-->
-            <!--<item-->
-                <!--android:id="@+id/sort_new"-->
-                <!--android:title="@string/action_sort_new" />-->
-        <!--</menu>-->
-    <!--</item>-->
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/action_sort"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/sort_top"
+                android:title="@string/action_sort_top">
+                <menu>
+                    <item
+                        android:id="@+id/sort_top_hour"
+                        android:title="@string/frequency_hour" />
+                    <item
+                        android:id="@+id/sort_top_day"
+                        android:title="@string/frequency_day" />
+                    <item
+                            android:id="@+id/sort_top_week"
+                            android:title="@string/frequency_week" />
+                    <item
+                            android:id="@+id/sort_top_month"
+                            android:title="@string/frequency_month" />
+                    <item
+                            android:id="@+id/sort_top_year"
+                            android:title="@string/frequency_year" />
+                    <item
+                            android:id="@+id/sort_top_all_time"
+                            android:title="@string/frequency_all_time" />
+                </menu>
+            </item>
+
+            <item
+                android:id="@+id/sort_hot"
+                android:title="@string/action_sort_hot" />
+
+            <item
+                    android:id="@+id/sort_controversial"
+                    android:title="@string/action_sort_controversial">
+                <menu>
+                    <item
+                            android:id="@+id/sort_controversial_hour"
+                            android:title="@string/frequency_hour" />
+                    <item
+                            android:id="@+id/sort_controversial_day"
+                            android:title="@string/frequency_day" />
+                    <item
+                            android:id="@+id/sort_controversial_week"
+                            android:title="@string/frequency_week" />
+                    <item
+                            android:id="@+id/sort_controversial_month"
+                            android:title="@string/frequency_month" />
+                    <item
+                            android:id="@+id/sort_controversial_year"
+                            android:title="@string/frequency_year" />
+                    <item
+                            android:id="@+id/sort_controversial_all_time"
+                            android:title="@string/frequency_all_time" />
+                </menu>
+            </item>
+
+            <item
+                android:id="@+id/sort_rising"
+                android:title="@string/action_sort_rising" />
+
+            <item
+                android:id="@+id/sort_new"
+                android:title="@string/action_sort_new" />
+        </menu>
+    </item>
 
     <item android:id="@+id/action_change_layout"
         android:icon="@drawable/ic_staggered_view"

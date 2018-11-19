@@ -15,12 +15,14 @@ interface RedditApi {
     @GET("/r/{subreddit}/{sort}.json")
     fun getInitialPosts(@Path("subreddit") subreddit : String,
                         @Path("sort") sort: String,
+                        @Query("t") frequency: String?,
                         @Query("limit") limit: Int) :
             Observable<RedditPostResponse.Result>
 
     @GET("/r/{subreddit}/{sort}.json")
     fun getNextPosts(@Path("subreddit") subreddit : String,
                      @Path("sort") sort: String,
+                     @Query("t") frequency: String?,
                      @Query("limit") limit: Int,
                      @Query("after") after: String) :
             Observable<RedditPostResponse.Result>

@@ -12,7 +12,9 @@ import io.reactivex.schedulers.Schedulers
 
 class PostDataSource (private val redditApi : RedditApi,
                       private val disposables : CompositeDisposable,
-                      private val subreddit : String)
+                      private val subreddit : String,
+                      private val sortBy : String,
+                      private val freq : String?)
                     : ItemKeyedDataSource<String, RedditPostResponse.Children>() {
 
     var status: MutableLiveData<Status> = MutableLiveData()
@@ -25,7 +27,7 @@ class PostDataSource (private val redditApi : RedditApi,
                              callback: LoadInitialCallback<RedditPostResponse.Children>) {
         status.postValue(Status.RUNNING)
         disposables.add(
-            redditApi.getInitialPosts(subreddit, "top", 100)
+            redditApi.getInitialPosts(subreddit, sortBy, freq, 100)
                 .subscribe(
                     { response ->
                         status.postValue(Status.SUCCESS)
@@ -43,7 +45,7 @@ class PostDataSource (private val redditApi : RedditApi,
                            callback: LoadCallback<RedditPostResponse.Children>) {
         status.postValue(Status.RUNNING)
         disposables.add(
-            redditApi.getNextPosts(subreddit, "top", 100, params.key)
+            redditApi.getNextPosts(subreddit, sortBy, freq, 100, params.key)
                 .subscribe(
                     { response ->
                         status.postValue(Status.SUCCESS)

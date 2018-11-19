@@ -11,12 +11,37 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>-->
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <!-- Base activity dark theme -->
+    <style name="DarkTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/smokeWhite</item>
+        <item name="backgroundColor">@color/nightGray</item>
+        <item name="postCardBackgroundColor">@color/lightGray</item>
+        <item name="postsButtonsColor">@color/smokeWhite</item>
 
-    <!-- Base activity theme -->
+        <item name="rippleEffectColor">@color/brightBlue</item>
+        <item name="borderColor">@color/white</item>
+        <item name="selectedViewPagerColor">@color/brightBlue</item>
+        <item name="unselectedViewPagerColor">@color/brightRed</item>
+
+        <item name="commentsButtonsColor">@color/darkBlack</item>
+        <item name="commentsBackgroundTransparentColor">@color/transparentGray</item>
+        <item name="commentsBackgroundSolidColor">@color/gray</item>
+        <item name="commentsCardBackgroundTransparentColor">@color/transparentGray</item>
+        <item name="commentsCardBackgroundSolidColor">@color/smokeWhite</item>
+        <item name="commentsTransparentTextColor">@color/smokeWhite</item>
+        <item name="commentsSolidTextColor">@color/smokeWhite</item>
+        <item name="imageBackgroundColor">@color/darkBlack</item>
+        <item name="appBarButtonColor">@color/smokeWhite</item>
+    </style>
+
+    <!-- Base activity light theme -->
     <style name="LightTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="android:textColorPrimary">@color/darkBlack</item>
@@ -32,18 +57,16 @@
 
         <item name="commentsButtonsColor">@color/darkBlack</item>
         <item name="commentsBackgroundTransparentColor">@color/transparentGray</item>
-        <item name="commentsBackgroundSolidColor">@color/smokeWhite</item>
+        <item name="commentsBackgroundSolidColor">@color/charcoalGray</item>
         <item name="commentsCardBackgroundTransparentColor">@color/transparentGray</item>
         <item name="commentsCardBackgroundSolidColor">@color/smokeWhite</item>
         <item name="commentsTransparentTextColor">@color/smokeWhite</item>
         <item name="commentsSolidTextColor">@color/smokeWhite</item>
         <item name="imageBackgroundColor">@color/darkBlack</item>
         <item name="appBarButtonColor">@color/smokeWhite</item>
-
     </style>
 
-
-    <style name="ToolbarTextAppearance" parent="@android:style/TextAppearance.Medium">>
+    <style name="ToolbarTextAppearance" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">@android:color/white</item>
     </style>
 

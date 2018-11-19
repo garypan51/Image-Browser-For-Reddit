@@ -9,14 +9,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import garypan.com.imagebrowserforreddit.R
 import com.google.android.material.snackbar.Snackbar
 import garypan.com.imagebrowserforreddit.adapters.PostAdapter
-import garypan.com.imagebrowserforreddit.interfaces.OnLayoutChangedListener
+import garypan.com.imagebrowserforreddit.interfaces.OnRecyclerViewChangedListener
 import garypan.com.imagebrowserforreddit.paging.PostViewModel
 import garypan.com.imagebrowserforreddit.paging.Status
 import garypan.com.imagebrowserforreddit.utils.SharedPrefHelper
@@ -29,12 +27,11 @@ import garypan.com.imagebrowserforreddit.utils.SharedPrefHelper.set
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
 
 @SuppressLint("ClickableViewAccessibility")
-class PostsFragment : Fragment(), PostAdapter.OnPostButtonsClickListener, OnLayoutChangedListener {
+class PostsFragment : Fragment(), PostAdapter.OnPostButtonsClickListener, OnRecyclerViewChangedListener {
     private lateinit var subreddit : String
     private lateinit var viewOfLayout: View
     private lateinit var viewModel: PostViewModel
     private lateinit var postAdapter: PostAdapter
-    private lateinit var navController : NavController
     private lateinit var prefs : SharedPreferences
     private lateinit var currentLayout : String
     private var commentsPopUpOpened = false
@@ -67,17 +64,12 @@ class PostsFragment : Fragment(), PostAdapter.OnPostButtonsClickListener, OnLayo
         return viewOfLayout
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
-                return PostViewModel(subreddit) as T
+                return PostViewModel(subreddit, "top", null) as T
             }
         })[PostViewModel::class.java]
 
@@ -91,7 +83,10 @@ class PostsFragment : Fragment(), PostAdapter.OnPostButtonsClickListener, OnLayo
         if (isVisibleToUser && isResumed){
             val listener = activity as ToolBarInterface?
             listener?.updateToolBar(subreddit)
-//            changeLayout()
+            val layoutPref : String? = prefs["layout"]
+            if(currentLayout != layoutPref) {
+                changeLayout(false)
+            }
         }
     }
 
@@ -167,27 +162,39 @@ class PostsFragment : Fragment(), PostAdapter.OnPostButtonsClickListener, OnLayo
     }
 
     fun declarePopUpStatus(status : Boolean){
-        val navHost = activity?.supportFragmentManager?.findFragmentById(R.id.navigationHost)
-        val parentFrag = navHost?.childFragmentManager?.fragments?.get(0)
-        (parentFrag as SubredditsFragment).onClick(status)
+        val parentFrag = activity?.supportFragmentManager?.findFragmentById(R.id.fragment)
+        if(parentFrag is SubredditsFragment){
+            parentFrag.onClick(status)
+        }
     }
 
-    override fun changeLayout() {
+    override fun changeLayout(shouldChangePref : Boolean) {
         val key = resources.getString(R.string.layoutPrefKey)
         val linearValue = resources.getString(R.string.layoutPrefLinearValue)
         val stagValue = resources.getString(R.string.layoutPrefStagValue)
 
-        if(prefs[key, linearValue] == linearValue) {
-            prefs[key] = stagValue
+        if(currentLayout == linearValue) {
+            if(shouldChangePref) {
+                prefs[key] = stagValue
+            }
             currentLayout = stagValue
             recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
 
-        else if(prefs[key, linearValue] == stagValue) {
-            prefs[key] = linearValue
+        else if(currentLayout == stagValue) {
+            if(shouldChangePref) {
+                prefs[key] = linearValue
+            }
             currentLayout = linearValue
             recyclerView.layoutManager = LinearLayoutManager(activity)
         }
         postAdapter.setLayout(currentLayout)
+    }
+
+    override fun changeSortBy(sortBy : String, freq : String?) {
+        viewModel.changeSortOrder(sortBy, freq)
+        viewModel.postList.observe(this, Observer {
+            postAdapter.submitList(it)
+        })
     }
 }

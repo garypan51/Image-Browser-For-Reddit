@@ -1,6 +1,7 @@
 package garypan.com.imagebrowserforreddit.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,11 @@ import garypan.com.imagebrowserforreddit.adapters.ViewPagerAdapter
 import garypan.com.imagebrowserforreddit.interfaces.OnBackPressedListener
 import kotlinx.android.synthetic.main.fragment_subreddits.*
 import androidx.viewpager.widget.ViewPager
-import garypan.com.imagebrowserforreddit.interfaces.OnLayoutChangedListener
+import com.rd.animation.type.AnimationType
+import garypan.com.imagebrowserforreddit.interfaces.OnRecyclerViewChangedListener
 
 
-class SubredditsFragment : Fragment(), OnBackPressedListener, OnLayoutChangedListener{
+class SubredditsFragment : Fragment(), OnBackPressedListener, OnRecyclerViewChangedListener{
     private lateinit var homeAdapter : ViewPagerAdapter
     private var currentPostFragment : PostsFragment? = null
     override var popupWindowIsOpened = false
@@ -31,6 +33,7 @@ class SubredditsFragment : Fragment(), OnBackPressedListener, OnLayoutChangedLis
         addPictureSubreddits(homeAdapter)
         viewPager.adapter = homeAdapter
         indicator.setViewPager(viewPager)
+        indicator.setAnimationType(AnimationType.DROP)
 
         val onChangeListener = object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
@@ -55,9 +58,15 @@ class SubredditsFragment : Fragment(), OnBackPressedListener, OnLayoutChangedLis
         }
     }
 
-    override fun changeLayout(){
+    override fun changeLayout(shouldChangePref : Boolean){
         if(currentPostFragment != null && currentPostFragment is PostsFragment){
-            currentPostFragment?.changeLayout()
+            currentPostFragment?.changeLayout(shouldChangePref)
+        }
+    }
+
+    override fun changeSortBy(sortBy : String, freq : String?) {
+        if(currentPostFragment != null && currentPostFragment is PostsFragment){
+            currentPostFragment?.changeSortBy(sortBy, freq)
         }
     }
 
@@ -71,6 +80,7 @@ class SubredditsFragment : Fragment(), OnBackPressedListener, OnLayoutChangedLis
     }
 
     fun onClick(isOpened: Boolean) {
+        Log.d("fdas", "testing back press - changed isOpened")
         popupWindowIsOpened = isOpened
     }
 }

@@ -9,17 +9,17 @@ import garypan.com.imagebrowserforreddit.utils.RedditApi
 import garypan.com.imagebrowserforreddit.vo.RedditPostResponse
 import io.reactivex.disposables.CompositeDisposable
 
-class PostViewModel(subreddit : String) : ViewModel() {
+class PostViewModel(private val subreddit : String, sortBy : String, freq: String?) : ViewModel() {
     private val redditApiService by lazy {
             RedditApi.create()
     }
     private val disposables = CompositeDisposable()
     var postList: LiveData<PagedList<RedditPostResponse.Children>>
     private val pageSize = 15
-    private val postDataSourceFactory : PostDataSourceFactory
+    private var postDataSourceFactory : PostDataSourceFactory
 
     init {
-        postDataSourceFactory = PostDataSourceFactory(redditApiService, disposables, subreddit)
+        postDataSourceFactory = PostDataSourceFactory(redditApiService, disposables, subreddit, sortBy, freq)
         val config = PagedList.Config.Builder()
             .setPageSize(pageSize)
             .setInitialLoadSizeHint(pageSize * 2)
@@ -42,6 +42,17 @@ class PostViewModel(subreddit : String) : ViewModel() {
 
     fun listIsEmpty(): Boolean {
         return postList.value?.isEmpty() ?: true
+    }
+
+    fun changeSortOrder(sortBy : String, freq : String?){
+        onCleared()
+        postDataSourceFactory = PostDataSourceFactory(redditApiService, disposables, subreddit, sortBy, freq)
+        val config = PagedList.Config.Builder()
+            .setPageSize(pageSize)
+            .setInitialLoadSizeHint(pageSize * 2)
+            .setEnablePlaceholders(false)
+            .build()
+        postList = LivePagedListBuilder<String, RedditPostResponse.Children>(postDataSourceFactory, config).build()
     }
 
 

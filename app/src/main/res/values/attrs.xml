@@ -19,6 +19,5 @@
         <attr name="commentsSolidTextColor" format="color"/>
         <attr name="imageBackgroundColor" format="color"/>
         <attr name="appBarButtonColor" format="color"/>
-
     </declare-styleable>
 </resources>

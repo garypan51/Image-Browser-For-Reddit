@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'androidx.navigation.safeargs'
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -30,12 +28,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.preference:preference:1.1.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0-alpha07'
-    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0-alpha07'
     implementation "android.arch.lifecycle:extensions:2.1.0-alpha01"
     implementation "android.arch.lifecycle:viewmodel:2.1.0-alpha01"
     implementation "android.arch.paging:runtime:2.1.0-alpha01"
@@ -48,9 +45,12 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.2.3"
 
     implementation 'me.relex:circleindicator:2.1.0'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.github.chrisbanes:PhotoView:2.2.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
