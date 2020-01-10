@@ -14,7 +14,6 @@ import garypan.com.imagebrowserforreddit.fragments.TextPreferenceFragment
 import garypan.com.imagebrowserforreddit.utils.SharedPrefHelper
 import garypan.com.imagebrowserforreddit.utils.SharedPrefHelper.get
 
-
 class MainActivity : AppCompatActivity(), PostsFragment.ToolBarInterface {
     companion object {
         private const val TIME_INTERVAL = 2000
@@ -55,7 +54,6 @@ class MainActivity : AppCompatActivity(), PostsFragment.ToolBarInterface {
 
             R.id.action_change_layout -> {
                 val currentFrag = supportFragmentManager.findFragmentById(R.id.fragment)
-//                val currentFrag = navHost?.childFragmentManager?.fragments?.get(0)
                 if (currentFrag is SubredditsFragment) {
                     currentFrag.changeLayout(true)
                 }
@@ -192,5 +190,4 @@ class MainActivity : AppCompatActivity(), PostsFragment.ToolBarInterface {
             currentFrag.changeSortBy(sortBy, freq)
         }
     }
-
 }

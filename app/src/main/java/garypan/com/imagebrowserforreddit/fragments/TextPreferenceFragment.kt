@@ -1,6 +1,5 @@
 package garypan.com.imagebrowserforreddit.fragments
 
-
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
@@ -11,9 +10,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import garypan.com.imagebrowserforreddit.R
 
-
 class TextPreferenceFragment : Fragment() {
-
     companion object {
         fun newInstance(type: String): TextPreferenceFragment {
             val args = Bundle()
@@ -51,5 +48,4 @@ class TextPreferenceFragment : Fragment() {
         view?.setBackgroundColor(backgroundColor)
         return view
     }
-
 }
