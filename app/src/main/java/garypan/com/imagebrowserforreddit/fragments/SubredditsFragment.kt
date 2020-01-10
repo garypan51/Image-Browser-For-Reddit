@@ -1,7 +1,6 @@
 package garypan.com.imagebrowserforreddit.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import kotlinx.android.synthetic.main.fragment_subreddits.*
 import androidx.viewpager.widget.ViewPager
 import com.rd.animation.type.AnimationType
 import garypan.com.imagebrowserforreddit.interfaces.OnRecyclerViewChangedListener
-
 
 class SubredditsFragment : Fragment(), OnBackPressedListener, OnRecyclerViewChangedListener{
     private lateinit var homeAdapter : ViewPagerAdapter
@@ -80,7 +78,6 @@ class SubredditsFragment : Fragment(), OnBackPressedListener, OnRecyclerViewChan
     }
 
     fun onClick(isOpened: Boolean) {
-        Log.d("fdas", "testing back press - changed isOpened")
         popupWindowIsOpened = isOpened
     }
 }

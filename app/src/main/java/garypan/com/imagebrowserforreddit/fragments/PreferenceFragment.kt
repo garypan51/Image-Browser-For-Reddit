@@ -8,10 +8,10 @@ import androidx.preference.PreferenceFragmentCompat
 import garypan.com.imagebrowserforreddit.R
 import androidx.annotation.ColorInt
 import android.util.TypedValue
+import androidx.preference.Preference
 import androidx.preference.SwitchPreference
 import garypan.com.imagebrowserforreddit.utils.SharedPrefHelper
 import garypan.com.imagebrowserforreddit.utils.SharedPrefHelper.set
-
 
 class PreferenceFragment : PreferenceFragmentCompat() {
 
@@ -23,8 +23,8 @@ class PreferenceFragment : PreferenceFragmentCompat() {
         super.onCreate(savedInstanceState)
 
         val prefManager = SharedPrefHelper.defaultPrefs(context!!)
-        val lightModePref = findPreference("lightMode") as SwitchPreference
-        val acknowledgmentPref = findPreference("libraryPref")
+        val lightModePref = findPreference<Preference>("lightMode") as SwitchPreference
+        val acknowledgmentPref = findPreference<Preference>("libraryPref")
 
         lightModePref.setOnPreferenceChangeListener{_, newValue ->
             val switchedTo = java.lang.Boolean.valueOf(newValue.toString())
@@ -36,7 +36,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
             true
         }
 
-        acknowledgmentPref.setOnPreferenceClickListener{
+        acknowledgmentPref?.setOnPreferenceClickListener{
             val libraryKey = resources.getString(R.string.libraryKey)
             val licenseFragment = TextPreferenceFragment.newInstance(libraryKey)
             val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
