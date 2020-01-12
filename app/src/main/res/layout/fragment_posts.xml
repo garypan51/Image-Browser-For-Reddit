@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fragmentContainer"
     android:background="?attr/backgroundColor"
-    tools:context=".fragments.PostsFragment">
+    tools:context=".ui.fragments.posts.PostsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
