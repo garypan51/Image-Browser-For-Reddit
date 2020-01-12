@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor"
-    tools:context=".activities.MainActivity"
+    tools:context=".ui.activities.MainActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <fragment
             android:id="@+id/fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="garypan.com.imagebrowserforreddit.fragments.SubredditsFragment"/>
+            android:name="garypan.com.imagebrowserforreddit.ui.fragments.subreddits.SubredditsFragment"/>
 
 </FrameLayout>
