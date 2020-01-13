@@ -34,6 +34,16 @@ Create an Android Emulator if one doesn't already exist to run the app on a emul
 * Select `Run -> Run 'app'` from the menu bar
 * Select the device/emulator you wish to run the app on and click 'OK'
 
+## Screenshots 
+<div>
+    <img src="images/Timers.jpg" width="100">
+    &nbsp;
+    <img src="images/TimerRunningAndPaused.jpg" width="100">
+    &nbsp;
+    <img src="images/NotificationRunning.jpg" width="100">
+    &nbsp;
+    <img src="images/NotificationComplete.jpg" width="100">
+</div>
 
 ## Estimated RoadMap
 
