@@ -3,8 +3,7 @@
 The following app displays images from imaged based subreddits. 
 It is meant to demonstrate how to make api calls to Reddit and parse json response files.
 Essentially the app displays images from a post (if the post contains an image), and allows 
-for users to see comments from that post.
-
+for users to see comments for that post.
 
 ## Building the App
 
@@ -36,13 +35,13 @@ Create an Android Emulator if one doesn't already exist to run the app on a emul
 
 ## Screenshots 
 <div>
-    <img src="images/Timers.jpg" width="100">
+    <img src="images/DarkMode.jpg" width="120">
     &nbsp;
-    <img src="images/TimerRunningAndPaused.jpg" width="100">
+    <img src="images/Staggered.jpg" width="120">
     &nbsp;
-    <img src="images/NotificationRunning.jpg" width="100">
+    <img src="images/LightMode.jpg" width="120">
     &nbsp;
-    <img src="images/NotificationComplete.jpg" width="100">
+    <img src="images/CommentsPopup.jpg" width="120">
 </div>
 
 ## Estimated RoadMap
@@ -52,12 +51,12 @@ The following are a list of items that should be worked on sorted by the order o
     * Make sure that every viewModel class has it's own unit tests.
 2. UI Redesign (Q1 - Q2 2020)
     * Rework design to be user friendly.
-        * Possibly remove the option to switch to staggeredView as it makes the images look to clusered up. Consider switching to a gridview instead.
+        * Possibly remove the option to switch to staggeredView as it makes the images look to clustered up. Consider switching to a gridview instead.
     * Incorporate more material design.
         * Switch colors and elements such as the container that has the image or the comments popup.   
 3. Architecture Refactor (Q2 - Q3 2020)
     * Migrate to Gradle Kotlin.
-    * Better Repository, api, and viewmodel structure.
+    * Better repository, api, and viewModel structure.
     * Add dagger for dependency injection for repositories, viewModels, and fragments.
 4. Add More Features (Q3 - Q4 2020)
     * Add Oauth and Sign In to fetch subreddits of a user.
